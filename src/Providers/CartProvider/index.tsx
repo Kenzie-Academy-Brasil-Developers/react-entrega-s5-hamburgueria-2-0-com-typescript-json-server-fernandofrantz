@@ -1,18 +1,10 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
 interface Product {
   id: number;
-  title: string;
-  description: string;
+  name: string;
+  img: string;
   price: number;
-  image: string;
 }
 
 interface CartProps {
@@ -38,7 +30,7 @@ export const CartProvider = ({ children }: CartProps) => {
 
   const deleteProduct = (productToBeDeleted: Product) => {
     const newCart = cart.filter(
-      (product) => product.title !== productToBeDeleted.title
+      (product) => product.name !== productToBeDeleted.name
     );
     setCart(newCart);
   };
