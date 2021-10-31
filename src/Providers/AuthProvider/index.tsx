@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 interface AuthProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ export const AuthContext = createContext<AuthProviderData>(
 );
 
 export const AuthProvider = ({ children }: AuthProps) => {
+  const history = useHistory();
   const [authToken, setAuthToken] = useState(
     () => localStorage.getItem("token") || ""
   );
@@ -33,6 +35,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
       .post("https://kenzie-hamburgueria.herokuapp.com/login", data)
       .then((response) => {
         localStorage.setItem("token", response.data.accessToken);
+        history.push("/home");
         console.log(response);
       })
       .catch((error) => console.log(error));
@@ -43,12 +46,14 @@ export const AuthProvider = ({ children }: AuthProps) => {
       .post("https://kenzie-hamburgueria.herokuapp.com/users", data)
       .then((response) => {
         console.log("user created successfully");
+        history.push("/");
       })
       .catch((error) => console.log(error));
   };
 
   const logout = () => {
     localStorage.clear();
+    history.push("/");
     setAuthToken("");
   };
 

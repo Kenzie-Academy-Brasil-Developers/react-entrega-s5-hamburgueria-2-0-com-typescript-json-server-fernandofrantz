@@ -21,12 +21,6 @@ export const FormRegister = styled.form`
   width: 100%;
 
   > input {
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 90%;
-    height: 25px;
-    margin: 20px 0px 0px 0px;
-    padding: 5px;
   }
 
   > button {

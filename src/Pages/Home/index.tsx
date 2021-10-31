@@ -25,16 +25,20 @@ interface Product {
   img: string;
 }
 
-interface Input {
-  showInput: string;
-}
-
 export const Home = () => {
-  const [showInput, setShowInput] = useState<Input>();
+  // const [showInput, setShowInput] = useState<ShowInput>('');
+
   const [menu, setMenu] = useState<Product[]>();
   const history = useHistory();
+
   const { cart, addProduct } = useContext(CartContext);
-  const { logout } = useContext(AuthContext);
+  const { logout, authToken } = useContext(AuthContext);
+
+  const auth = () => {
+    if (authToken == "") {
+      history.push("/");
+    }
+  };
 
   const handleRequisition = () => {
     axios

@@ -11,6 +11,10 @@ interface CartProps {
   children: ReactNode;
 }
 
+interface ShowCart {
+  showCart: boolean;
+}
+
 interface CartProviderData {
   cart: Product[];
   addProduct: (product: Product) => void;

@@ -6,6 +6,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { BsFillBagFill } from "react-icons/bs";
 import { useHistory } from "react-router";
 import { Box, Container, FormLogin, Title } from "./styles";
+import { TextField } from "@material-ui/core";
 
 interface UserData {
   username: string;
@@ -18,14 +19,8 @@ export const Login = () => {
   const { authToken, signIn } = useContext(AuthContext);
   const history = useHistory();
   const formSchema = yup.object().shape({
-    email: yup
-      .string()
-      .required("email required")
-      .email("must be a valid e-mail"),
-    password: yup
-      .string()
-      .required("password required")
-      .min(5, "at least 5 characters"),
+    email: yup.string().required("informe seu e-mail"),
+    password: yup.string().required("informe sua senha"),
   });
 
   const {
@@ -54,12 +49,29 @@ export const Login = () => {
         </Box>
         <FormLogin onSubmit={handleSubmit(handleForm)}>
           <h2>Login</h2>
-          <input type="text" placeholder="E-mail" {...register("email")} />
-          <input
-            type="password"
-            placeholder="Senha"
-            {...register("password")}
+          <TextField
+            type="text"
+            label="E-mail"
+            margin="normal"
+            variant="outlined"
+            size="small"
+            color="primary"
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
           />
+          <TextField
+            type="password"
+            label="Senha"
+            margin="normal"
+            variant="outlined"
+            size="small"
+            color="primary"
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+          />
+
           <button className="buttonSubmit" type="submit">
             Login
           </button>
