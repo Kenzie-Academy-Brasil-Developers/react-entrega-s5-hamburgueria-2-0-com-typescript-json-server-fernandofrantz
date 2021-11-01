@@ -4,10 +4,13 @@ export const UlMenu = styled.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  text-align: center;
+  justify-content: center;
   padding: 0px;
   width: 80%;
   height: 300px;
   overflow: auto;
+  max-width: 400px;
 
   > li {
     width: 90%;
@@ -57,6 +60,17 @@ export const UlMenu = styled.ul`
     > .buttonDelete {
       margin: 10px;
     }
+  }
+
+  > button {
+    width: 92%;
+    max-width: 330px;
+    margin: 20px 0px 20px 0px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    background-color: #f5f5f5;
+    color: #999999;
   }
 `;
 
@@ -121,12 +135,13 @@ export const Price = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 80%;
 
   > p {
     color: #333333;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 50px;
+    margin: 20px;
   }
 `;
 

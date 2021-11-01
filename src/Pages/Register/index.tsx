@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { BsFillBagFill } from "react-icons/bs";
 import { TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
+import { Title } from "./styles";
 
 interface UserData {
   username: string;
@@ -50,11 +51,11 @@ export const Register = () => {
   return (
     <>
       <Container>
-        <Box>
-          <p>Cadastro</p>
-          <Link to="/">Retornar para login</Link>
-        </Box>
         <FormRegister onSubmit={handleSubmit(handleForm)}>
+          <Box>
+            <p>Cadastro</p>
+            <Link to="/">Retornar para login</Link>
+          </Box>
           <TextField
             type="text"
             label="username"
@@ -102,14 +103,20 @@ export const Register = () => {
 
           <button type="submit">submit</button>
         </FormRegister>
-        <BoxInfo>
-          <BsFillBagFill />
-          <span>
-            A vida é como um sanduíche, é preciso recheá-la com os
-            <b> melhores </b>
-            ingredientes.
-          </span>
-        </BoxInfo>
+        <div>
+          <Title>
+            <h1 className="titleBurguer">Burguer</h1>
+            <h4 className="titleKenzie">Kenzie</h4>
+          </Title>
+          <BoxInfo>
+            <BsFillBagFill />
+            <span>
+              A vida é como um sanduíche, é preciso recheá-la com os
+              <b> melhores </b>
+              ingredientes.
+            </span>
+          </BoxInfo>
+        </div>
       </Container>
     </>
   );

@@ -36,17 +36,20 @@ export const Login = () => {
   return (
     <>
       <Container>
-        <Title>
-          <h1 className="titleBurguer">Burguer</h1>
-          <h4 className="titleKenzie">Kenzie</h4>
-        </Title>
-        <Box>
-          <BsFillBagFill />
-          <span>
-            A vida é como um sanduíche, é preciso recheá-la com os melhores
-            ingredientes.
-          </span>
-        </Box>
+        <div className="secaoInicial">
+          <Title>
+            <h1 className="titleBurguer">Burguer</h1>
+            <h4 className="titleKenzie">Kenzie</h4>
+          </Title>
+          <Box>
+            <BsFillBagFill />
+            <span>
+              A vida é como um sanduíche, é preciso recheá-la com os melhores
+              ingredientes.
+            </span>
+          </Box>
+        </div>
+
         <FormLogin onSubmit={handleSubmit(handleForm)}>
           <h2>Login</h2>
           <TextField

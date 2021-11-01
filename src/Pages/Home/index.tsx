@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { IoFastFoodOutline } from "react-icons/io5";
+import { TextField } from "@material-ui/core";
 
 interface Product {
   id: number;
@@ -34,11 +35,9 @@ export const Home = () => {
   const { cart, addProduct } = useContext(CartContext);
   const { logout, authToken } = useContext(AuthContext);
 
-  const auth = () => {
-    if (authToken == "") {
-      history.push("/");
-    }
-  };
+  if (authToken === "") {
+    history.push("/");
+  }
 
   const handleRequisition = () => {
     axios
@@ -48,6 +47,14 @@ export const Home = () => {
   };
   useEffect(handleRequisition);
 
+  const [showInput, setShowInput] = useState(false);
+  const [userInput, setUserInput] = useState("");
+
+  const handleSearch = () => {
+    setShowInput(!showInput);
+    setUserInput("");
+  };
+
   return (
     <>
       <Container>
@@ -56,14 +63,45 @@ export const Home = () => {
             <h1 className="titleBurguer">Burguer</h1>
             <h4 className="titleKenzie">Kenzie</h4>
           </Title>
-          <BiSearchAlt onClick={() => console.log("aaa")} />
+          <BiSearchAlt onClick={handleSearch} />
           <AiOutlineShoppingCart onClick={() => history.push("/cart")} />
           <FiLogOut onClick={logout} />
         </BoxMenu>
         <Div>
+          {showInput && (
+            <TextField
+              type="text"
+              label="Pesquise por categoria."
+              margin="normal"
+              variant="outlined"
+              size="small"
+              color="primary"
+              onChange={(evt) => setUserInput(evt.target.value)}
+            />
+          )}
           <SectionMenu>
             <UlMenu>
               {menu &&
+                userInput !== "" &&
+                menu
+                  .filter(
+                    (item) =>
+                      item.category.toLocaleLowerCase() ===
+                      userInput.toLocaleLowerCase()
+                  )
+                  .map((item) => (
+                    <li key={item.id}>
+                      <img src={item.img} alt="" />
+                      <h3>{item.name}</h3>
+                      <span>R$ {item.price}</span>
+                      <button type="button" onClick={() => addProduct(item)}>
+                        add to cart
+                      </button>
+                    </li>
+                  ))}
+
+              {menu &&
+                userInput === "" &&
                 menu.map((item) => (
                   <li key={item.id}>
                     <img src={item.img} alt="" />

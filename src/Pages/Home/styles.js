@@ -84,6 +84,20 @@ export const UlMenu = styled.ul`
       width: 150px;
       height: 160px;
     }
+
+    @media screen and (min-width: 1024px) {
+      margin: 20px;
+      width: 150px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 480px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 590px;
+    flex-wrap: wrap;
   }
 `;
 
@@ -110,6 +124,14 @@ export const Box = styled.div`
     margin: 10px;
     width: 80px;
     height: 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 480px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 680px;
   }
 `;
 

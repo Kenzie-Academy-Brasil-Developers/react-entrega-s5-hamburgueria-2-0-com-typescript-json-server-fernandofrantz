@@ -18,9 +18,12 @@ import {
 import { AuthContext } from "../../Providers/AuthProvider";
 
 export const Cart = () => {
-  const { cart, deleteProduct } = useContext(CartContext);
+  const { cart, deleteProduct, deleteAllProducts } = useContext(CartContext);
   const { authToken } = useContext(AuthContext);
   const history = useHistory();
+  if (authToken === "") {
+    history.push("/");
+  }
   return (
     <>
       <div>
@@ -51,6 +54,11 @@ export const Cart = () => {
                   />
                 </li>
               ))}
+            {cart.length !== 0 && (
+              <button type="button" onClick={deleteAllProducts}>
+                Remover tudo
+              </button>
+            )}
           </UlMenu>
           <Linha></Linha>
           <Price>
