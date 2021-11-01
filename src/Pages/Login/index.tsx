@@ -8,15 +8,13 @@ import { useHistory } from "react-router";
 import { Box, Container, FormLogin, Title } from "./styles";
 import { TextField } from "@material-ui/core";
 
-interface UserData {
-  username: string;
+interface FormLoginData {
   email: string;
   password: string;
-  age: number;
 }
 
 export const Login = () => {
-  const { authToken, signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const history = useHistory();
   const formSchema = yup.object().shape({
     email: yup.string().required("informe seu e-mail"),
@@ -27,9 +25,9 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserData>({ resolver: yupResolver(formSchema) });
+  } = useForm<FormLoginData>({ resolver: yupResolver(formSchema) });
 
-  const handleForm = (data: UserData) => {
+  const handleForm = (data: FormLoginData) => {
     signIn(data);
   };
 

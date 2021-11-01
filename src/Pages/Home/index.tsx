@@ -27,11 +27,9 @@ interface Product {
 }
 
 export const Home = () => {
-  // const [showInput, setShowInput] = useState<ShowInput>('');
-
-  const [menu, setMenu] = useState<Product[]>();
   const history = useHistory();
 
+  const [menu, setMenu] = useState<Product[]>();
   const { cart, addProduct } = useContext(CartContext);
   const { logout, authToken } = useContext(AuthContext);
 

@@ -15,9 +15,14 @@ interface UserData {
 
 interface AuthProviderData {
   authToken: string;
-  signIn: (userData: UserData) => void;
+  signIn: (userData: FormLoginData) => void;
   registerUser: (userData: UserData) => void;
   logout: () => void;
+}
+
+interface FormLoginData {
+  email: string;
+  password: string;
 }
 
 export const AuthContext = createContext<AuthProviderData>(
@@ -30,7 +35,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
     () => localStorage.getItem("token") || ""
   );
 
-  const signIn = (data: UserData) => {
+  const signIn = (data: FormLoginData) => {
     axios
       .post("https://kenzie-hamburgueria.herokuapp.com/login", data)
       .then((response) => {
